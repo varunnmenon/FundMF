@@ -16,7 +16,10 @@ class MutualFundList extends ChangeNotifier {
 
   void sortSelf() {
     _mfList.sort((a, b) {
-      return a.getName().toLowerCase().compareTo(b.getName().toLowerCase());
+      return a
+          .getSchemeName()
+          .toLowerCase()
+          .compareTo(b.getSchemeName().toLowerCase());
     });
   }
 
@@ -26,7 +29,7 @@ class MutualFundList extends ChangeNotifier {
   }
 
   void addMutualFund(MutualFund mf) {
-    LoggingHelper.logger.d('Added Mutual fund ${mf.getName()}');
+    LoggingHelper.logger.d('Added Mutual fund ${mf.getSchemeName()}');
     _mfList.add(mf);
     sortSelf();
     notifyListeners();

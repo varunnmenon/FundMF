@@ -10,7 +10,14 @@ class UserList {
   }
   UserList._internal();
 
-  List<User> _users = [];
+  List<User> _users = [
+    User(
+        name: 'varun',
+        email: 'varun.menon@gmail.com',
+        password: '123456',
+        age: '25',
+        gender: 'Male')
+  ];
 
   UnmodifiableListView<User> get users {
     return UnmodifiableListView(_users);

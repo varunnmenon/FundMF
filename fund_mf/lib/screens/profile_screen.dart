@@ -21,7 +21,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   bool _showSpinner = false;
   bool _isUpdate = false;
-  String userName = 'Name';
+//  String userName = 'Name';
   String email;
   String password;
   String name;
@@ -46,29 +46,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
     buildNumber: 'Unknown',
   );
 
-  void getName() {
-    LoggingHelper.logger.d('getName Called');
-    setState(() {
-      showHideSpinner(true);
-      userName = MyUser().user.name;
-      showHideSpinner(false);
-    });
-  }
+//  void getName() {
+//    LoggingHelper.logger.d('getName Called');
+//    setState(() {
+//      showHideSpinner(true);
+//      userName = MyUser().user.name;
+//      showHideSpinner(false);
+//    });
+//  }
 
   void setInitialValues() {
-    _nameController = new TextEditingController(text: MyUser().user.name);
-    _emailController = new TextEditingController(text: MyUser().user.email);
-    _passwordController =
-        new TextEditingController(text: MyUser().user.password);
+    name = MyUser().user.name;
+    email = MyUser().user.email;
+    password = MyUser().user.password;
     age = MyUser().user.age;
     gender = MyUser().user.gender;
+
+    _nameController = new TextEditingController(text: name);
+    _emailController = new TextEditingController(text: email);
+    _passwordController = new TextEditingController(text: password);
   }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    getName();
+//    getName();
     _initPackageInfo();
     setInitialValues();
   }
@@ -122,7 +125,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         children: <Widget>[
           Center(
             child: Text(
-              Helper().capitalize(userName),
+              Helper().capitalize(MyUser().user.name),
               style: TextStyle(fontSize: 25),
             ),
           ),

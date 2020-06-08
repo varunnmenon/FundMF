@@ -30,3 +30,11 @@ const kMFCardMargin = EdgeInsets.only(
   top: 10,
   bottom: 10,
 );
+
+enum RequestType { Mutualfunds, YesterdayData, HistoricData }
+enum DateModificationType { add, subtract }
+
+const mfApiKey = 'bfc7e5f25fmsh727028315901c86p1acaabjsn11ff4cab3f38';
+const mfApiHost = 'latest-mutual-fund-nav.p.rapidapi.com';
+
+const mfHeaders = {'x-rapidapi-host': mfApiHost, 'x-rapidapi-key': mfApiKey};
