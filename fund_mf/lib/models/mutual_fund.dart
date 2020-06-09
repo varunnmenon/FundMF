@@ -1,21 +1,5 @@
 import 'package:fundmf/utils/time_helper.dart';
 
-class MutualFundOG {
-  String _name, _cost;
-  MutualFundOG({name, cost}) {
-    this._name = name;
-    this._cost = cost;
-  }
-
-  String getName() {
-    return _name;
-  }
-
-  String getCost() {
-    return _cost;
-  }
-}
-
 class MutualFund {
   String _mutualFundFamily,
       _schemeCategory,

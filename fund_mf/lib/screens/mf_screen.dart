@@ -1,4 +1,3 @@
-import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:fundmf/components/app_scaffold_widget.dart';
 import 'package:fundmf/components/mf_details_widget.dart';
@@ -19,106 +18,13 @@ class _MutualFundScreenState extends State<MutualFundScreen> {
   bool showSpinner = false;
   Helper helperObj = Helper();
 
-  void testScreen() {
-    Container(
-      color: Colors.white,
-    );
-  }
-
-  void BKUPScreen() {
-    Container(
-      color: Colors.white,
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Expanded(
-              flex: 1,
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 5),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    Hero(
-                      tag: 'MFLogo-${widget.showMF.getSchemeCode()}',
-                      child: Center(
-                        child: Container(
-                          child: Image.asset(
-                              'lib/images/${helperObj.getLogoUrl(widget.showMF.getSchemeName())}.png'),
-                          height: 50,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                      child: Container(
-                        child: Text(
-                          widget.showMF.getSchemeName(),
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Expanded(
-              flex: 1,
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: <Widget>[
-                          Text(
-                            '9.999%',
-                            style: TextStyle(fontSize: 25),
-                          ),
-                          Text(
-                            '0.85% 1-Day Return',
-                            style: TextStyle(fontSize: 14),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Expanded(
-              flex: 3,
-              child: Container(
-                color: Colors.teal,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+    final oneDayPercent = helperObj.getPercentage(
+        historicData: widget.showMF.getSchemeHistoricData(),
+        months: 0,
+        isAllTime: false,
+        oneDay: true);
     return AppScaffoldWidget(
       appBarTitle: '',
       isBottomBarVisible: false,
@@ -144,7 +50,7 @@ class _MutualFundScreenState extends State<MutualFundScreen> {
                           Expanded(
                             child: Padding(
                               padding: const EdgeInsets.only(
-                                  left: 20, right: 20, top: 30, bottom: 10),
+                                  left: 20, right: 20, top: 30, bottom: 20),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -301,14 +207,18 @@ class _MutualFundScreenState extends State<MutualFundScreen> {
                                                     heading: 'Latest NAV :',
                                                     value:
                                                         '\u{20B9} ${widget.showMF.getNAV().toStringAsFixed(2)} (as on ${widget.showMF.getDate()})',
+                                                    valueColor: Colors.black,
                                                   ),
                                                   SizedBox(
                                                     height: 10,
                                                   ),
                                                   MFDetailWidget(
                                                     heading: '1D Returns :',
-                                                    value:
-                                                        '${helperObj.getPercentage(historicData: widget.showMF.getSchemeHistoricData(), months: 0, isAllTime: false, oneDay: true)}%',
+                                                    value: '$oneDayPercent%',
+                                                    valueColor: oneDayPercent
+                                                            .contains('-')
+                                                        ? Colors.redAccent
+                                                        : Colors.green,
                                                   ),
                                                   SizedBox(
                                                     height: 10,
@@ -317,6 +227,7 @@ class _MutualFundScreenState extends State<MutualFundScreen> {
                                                     heading: 'Scheme Code :',
                                                     value:
                                                         '${widget.showMF.getSchemeCode()}',
+                                                    valueColor: Colors.black,
                                                   ),
                                                   SizedBox(
                                                     height: 10,
@@ -326,6 +237,7 @@ class _MutualFundScreenState extends State<MutualFundScreen> {
                                                         'Scheme Category :',
                                                     value:
                                                         '${widget.showMF.getSchemeCategory()}',
+                                                    valueColor: Colors.black,
                                                   ),
                                                 ],
                                               ),

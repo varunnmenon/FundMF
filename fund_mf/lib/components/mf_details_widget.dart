@@ -5,10 +5,12 @@ class MFDetailWidget extends StatelessWidget {
     Key key,
     @required this.heading,
     @required this.value,
+    this.valueColor,
   }) : super(key: key);
 
   final String heading;
   final String value;
+  final Color valueColor;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,7 @@ class MFDetailWidget extends StatelessWidget {
             value,
             textAlign: TextAlign.left,
             style: TextStyle(
-              color: Colors.black,
+              color: valueColor,
               fontSize: 17,
               fontWeight: FontWeight.w500,
             ),

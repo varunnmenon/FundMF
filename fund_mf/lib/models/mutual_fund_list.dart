@@ -5,6 +5,7 @@ import 'mutual_fund.dart';
 
 class MutualFundList extends ChangeNotifier {
   List<MutualFund> _mfList = [];
+  List<MutualFund> _UnfilteresMfList = [];
 
   UnmodifiableListView<MutualFund> get mfList {
     return UnmodifiableListView(_mfList);
@@ -39,11 +40,25 @@ class MutualFundList extends ChangeNotifier {
     LoggingHelper.logger.d('Updates Mutual fund List');
     _mfList.clear();
     _mfList.addAll(mList);
+    _UnfilteresMfList.addAll(mList);
     sortSelf();
   }
 
   void updateAndNotify(List<MutualFund> mList) {
-    updateMFList(mList);
+    _mfList.clear();
+    _mfList.addAll(mList);
+    sortSelf();
     notifyListeners();
+  }
+
+  void searchMF(String s) {
+    LoggingHelper.logger.d('Searching');
+    if (s == null || s.isEmpty || s == '') {
+      updateAndNotify(_UnfilteresMfList);
+    } else {
+      updateAndNotify(_UnfilteresMfList.where((element) =>
+              element.getSchemeName().toLowerCase().contains(s.toLowerCase()))
+          .toList());
+    }
   }
 }
