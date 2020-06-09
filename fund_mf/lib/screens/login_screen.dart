@@ -124,7 +124,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         if (userList.users.isNotEmpty) {
                           bool isUser = false;
                           for (User r in userList.users) {
-                            if (r.email == email && r.password == password) {
+                            if (r.email.toLowerCase() == email.toLowerCase() &&
+                                r.password == password) {
                               isUser = true;
                               MyUser loginUser = MyUser();
                               loginUser.login(r);

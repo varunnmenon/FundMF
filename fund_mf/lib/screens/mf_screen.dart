@@ -5,6 +5,7 @@ import 'package:fundmf/components/table_nav_widget.dart';
 import 'package:fundmf/models/mutual_fund.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:fundmf/utils/helper.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class MutualFundScreen extends StatefulWidget {
   final MutualFund showMF;
@@ -50,7 +51,7 @@ class _MutualFundScreenState extends State<MutualFundScreen> {
                           Expanded(
                             child: Padding(
                               padding: const EdgeInsets.only(
-                                  left: 20, right: 20, top: 30, bottom: 20),
+                                  left: 20, right: 20, top: 30, bottom: 40),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -116,6 +117,45 @@ class _MutualFundScreenState extends State<MutualFundScreen> {
                                                   ),
                                                 ],
                                               ),
+                                            ),
+                                            SizedBox(
+                                              height: 20,
+                                            ),
+                                            SfCartesianChart(
+                                              primaryXAxis: CategoryAxis(),
+                                              // Chart title
+                                              title: ChartTitle(
+                                                  text:
+                                                      'Datewise Movement on NAV'),
+                                              // Enable legend
+//                                              legend: Legend(isVisible: true),
+                                              // Enable tooltip
+                                              tooltipBehavior:
+                                                  TooltipBehavior(enable: true),
+                                              series: <ChartSeries>[
+                                                FastLineSeries<
+                                                    MutualFundHistoricData,
+                                                    String>(
+                                                  color: Colors.teal,
+                                                  dataSource: widget.showMF
+                                                      .getReversedSchemeHistoricData(),
+                                                  xValueMapper:
+                                                      (MutualFundHistoricData d,
+                                                              _) =>
+                                                          d.getSchemeDate(),
+                                                  yValueMapper:
+                                                      (MutualFundHistoricData d,
+                                                              _) =>
+                                                          double.parse(d
+                                                              .getSchemeNAVForDate()
+                                                              .toStringAsFixed(
+                                                                  2)),
+                                                  // Enable data label
+                                                  dataLabelSettings:
+                                                      DataLabelSettings(
+                                                          isVisible: false),
+                                                )
+                                              ],
                                             ),
                                             SizedBox(
                                               height: 20,

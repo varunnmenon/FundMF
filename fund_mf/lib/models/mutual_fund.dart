@@ -96,6 +96,10 @@ class MutualFund {
   List<MutualFundHistoricData> getSchemeHistoricData() {
     return _schemeHistoricData;
   }
+
+  List<MutualFundHistoricData> getReversedSchemeHistoricData() {
+    return _schemeHistoricData.reversed.toList();
+  }
 }
 
 class MutualFundHistoricData {
