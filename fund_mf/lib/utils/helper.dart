@@ -137,7 +137,6 @@ class Helper {
       bool isAllTime,
       int months}) {
     double latestNAV = historicData[0].getSchemeNAVForDate();
-//    double prevNAV = historicData[1].getSchemeNAVForDate();
     double selectedMonthNAV = oneDay
         ? historicData[1].getSchemeNAVForDate()
         : (isAllTime
@@ -145,11 +144,9 @@ class Helper {
             : getMonthsData(historicData: historicData, months: months)
                 .getSchemeNAVForDate());
 
-//    String returnPercent = getNAVPercentage(latestNAV, prevNAV);
     String returnSelectedPercent =
         getNAVPercentage(latestNAV, selectedMonthNAV);
 
-//    LoggingHelper.logger.d('Six month gain is $returnSixPercent');
     return returnSelectedPercent;
   }
 
@@ -163,5 +160,13 @@ class Helper {
       LoggingHelper.logger.e(ex);
     }
     return returnPercent;
+  }
+
+  List<String> getAgeValues() {
+    List<String> ages = [];
+    for (var i = 18; i < 100; i++) {
+      ages.add(i.toString());
+    }
+    return ages;
   }
 }

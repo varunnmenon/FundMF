@@ -6,6 +6,7 @@ import 'package:fundmf/components/rounded_button.dart';
 import 'package:fundmf/models/user.dart';
 import 'package:fundmf/models/user_list.dart';
 import 'package:fundmf/utils/constants.dart';
+import 'package:fundmf/utils/helper.dart';
 import 'package:fundmf/utils/log_helper.dart';
 import 'package:fundmf/utils/routes_helper.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
@@ -28,14 +29,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     setState(() {
       showSpinner = spinner;
     });
-  }
-
-  List<String> getAgeValues() {
-    List<String> ages = [];
-    for (var i = 18; i < 100; i++) {
-      ages.add(i.toString());
-    }
-    return ages;
   }
 
   void showAlert({message, error = false}) {
@@ -146,25 +139,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   SizedBox(
                     height: 10.0,
                   ),
-//                  TextField(
-//                    style: TextStyle(
-//                      color: Colors.black,
-//                      fontSize: 20,
-//                    ),
-//                    decoration: kTextFieldDecoration.copyWith(
-//                      hintText: 'Age',
-//                      focusedBorder: kBlueOutlineInputBorder,
-//                    ),
-//                    keyboardType: TextInputType.number,
-//                    onChanged: (newValue) {
-//                      age = newValue;
-//                    },
-//                  ),
                   FormField<String>(builder: (FormFieldState<String> state) {
                     return FormFieldWidget(
                       value: age,
                       hintText: 'Age',
-                      listValues: getAgeValues(),
+                      listValues: Helper().getAgeValues(),
                       onChangedFn: (String newValue) {
                         setState(() {
                           age = newValue;
@@ -180,7 +159,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     return FormFieldWidget(
                       value: gender,
                       hintText: 'Gender',
-                      listValues: <String>['Male', 'Female', 'Others'],
+                      listValues: genderList,
                       onChangedFn: (String newValue) {
                         setState(() {
                           gender = newValue;

@@ -21,6 +21,4 @@ class Routes {
     Navigator.of(context)
         .pushNamedAndRemoveUntil(route, (Route<dynamic> route) => false);
   }
-
-  void pop() {}
 }

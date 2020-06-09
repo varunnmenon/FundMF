@@ -52,7 +52,7 @@ class MutualFundList extends ChangeNotifier {
   }
 
   void searchMF(String s) {
-    LoggingHelper.logger.d('Searching');
+//    LoggingHelper.logger.d('Searching');
     if (s == null || s.isEmpty || s == '') {
       updateAndNotify(_UnfilteresMfList);
     } else {

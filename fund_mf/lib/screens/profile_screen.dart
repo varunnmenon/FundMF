@@ -28,6 +28,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String age;
   String gender;
   UserList userList = UserList();
+  Helper helperObj = Helper();
 
   TextEditingController _nameController;
   TextEditingController _emailController;
@@ -107,14 +108,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  List<String> getAgeValues() {
-    List<String> ages = [];
-    for (var i = 18; i < 100; i++) {
-      ages.add(i.toString());
-    }
-    return ages;
-  }
-
   Widget viewProfile() {
     return Container(
       padding: EdgeInsets.only(left: 10, right: 10, top: 40, bottom: 20),
@@ -125,7 +118,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         children: <Widget>[
           Center(
             child: Text(
-              Helper().capitalize(MyUser().user.name),
+              helperObj.capitalize(MyUser().user.name),
               style: TextStyle(fontSize: 25),
             ),
           ),
@@ -143,7 +136,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           Center(
             child: Text(
-              '${MyUser().user.age}, ${Helper().capitalize(MyUser().user.gender)}',
+              '${MyUser().user.age}, ${helperObj.capitalize(MyUser().user.gender)}',
               style: TextStyle(fontSize: 17),
             ),
           ),
@@ -281,7 +274,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 return FormFieldWidget(
                   value: age,
                   hintText: 'Age',
-                  listValues: getAgeValues(),
+                  listValues: helperObj.getAgeValues(),
                   onChangedFn: (String newValue) {
                     setState(() {
                       age = newValue;
@@ -297,7 +290,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 return FormFieldWidget(
                   value: gender,
                   hintText: 'Gender',
-                  listValues: <String>['Male', 'Female', 'Others'],
+                  listValues: genderList,
                   onChangedFn: (String newValue) {
                     setState(() {
                       gender = newValue;

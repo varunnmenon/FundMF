@@ -16,9 +16,6 @@ class DateTimeHelper {
       int monthToAddSubtract = 0,
       @required DateModificationType addSubtract}) {
     var date1 = convertToDateTime(dateNAV: latestNAVDate);
-//    date1 = addSubtract == DateModificationType.subtract
-//        ? date1.subtract(Duration(days: daysToAddSubtract))
-//        : date1.add(Duration(days: daysToAddSubtract));
 
     var date2 = addSubtract == DateModificationType.subtract
         ? new DateTime(date1.year, date1.month - monthToAddSubtract,
@@ -27,18 +24,6 @@ class DateTimeHelper {
             date1.day + daysToAddSubtract);
 
     return _convertFromDateTime(dateNAV: date2);
-  }
-
-  static String _addDaysToDate({String dateNAV, int daysToADD = 1}) {
-    var date1 = convertToDateTime(dateNAV: dateNAV);
-    date1.add(Duration(days: daysToADD));
-    return _convertFromDateTime(dateNAV: date1);
-  }
-
-  static String _subtractDaysToDate({String dateNAV, int daysToSubtract = 1}) {
-    var date1 = convertToDateTime(dateNAV: dateNAV);
-    date1.add(Duration(days: daysToSubtract));
-    return _convertFromDateTime(dateNAV: date1);
   }
 
   static DateTime convertToDateTime(

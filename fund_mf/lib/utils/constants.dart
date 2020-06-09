@@ -38,3 +38,5 @@ const mfApiKey = 'bfc7e5f25fmsh727028315901c86p1acaabjsn11ff4cab3f38';
 const mfApiHost = 'latest-mutual-fund-nav.p.rapidapi.com';
 
 const mfHeaders = {'x-rapidapi-host': mfApiHost, 'x-rapidapi-key': mfApiKey};
+
+const genderList = <String>['Male', 'Female', 'Others'];

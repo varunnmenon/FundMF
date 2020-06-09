@@ -9,7 +9,6 @@ class MutualFund {
       _schemeCode,
       _schemeType;
 
-//  String _schemePrevDate;
   String _schemePrevNAV = '0';
   List<MutualFundHistoricData> _schemeHistoricData = [];
 
@@ -20,7 +19,6 @@ class MutualFund {
       latestDate,
       schemeNAV,
       schemeCode,
-//    schemePrevDate,
       schemeType}) {
     this._mutualFundFamily = mutualFundFamily;
     this._schemeCategory = schemeCategory;
@@ -29,7 +27,6 @@ class MutualFund {
     this._schemeNAV = schemeNAV;
     this._schemeCode = schemeCode;
     this._schemeType = schemeType;
-//    this._schemePrevDate = schemePrevDate;
   }
 
   factory MutualFund.fromJson(dynamic json) {
@@ -41,8 +38,6 @@ class MutualFund {
         schemeNAV: json['Net Asset Value'] as String,
         schemeCode: json['Scheme Code'] as String,
         schemeType: json['Scheme Type'] as String);
-//        schemePrevDate: DateTimeHelper.subtractDaysToDate(
-//            latestNAVDate: json['Date'] as String, daysToSubtract: 1));
   }
 
   String getSchemeName() {
@@ -60,10 +55,6 @@ class MutualFund {
   String getDate() {
     return _latestDate;
   }
-
-//  String getPrevDate() {
-//    return _schemePrevDate;
-//  }
 
   String getSchemeCode() {
     return _schemeCode;
