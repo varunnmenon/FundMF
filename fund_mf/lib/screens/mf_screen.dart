@@ -135,7 +135,7 @@ class _MutualFundScreenState extends State<MutualFundScreen> {
                                               FastLineSeries<
                                                   MutualFundHistoricData,
                                                   String>(
-                                                color: Colors.teal,
+                                                color: Colors.red,
                                                 dataSource: widget.showMF
                                                     .getReversedSchemeHistoricData(),
                                                 xValueMapper:
